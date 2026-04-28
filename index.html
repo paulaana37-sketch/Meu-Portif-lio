@@ -1,69 +1,864 @@
-
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ana Paula Santana Leite | Portfólio Profissional</title>
+  <meta name="description" content="Portfólio profissional de Ana Paula Santana Leite — Coordenadora Cultural, Gestora de Conteúdo Digital e Especialista em Informática." />
   <style>
     :root{
-      --primary:#2c3e50; --accent:#e67e22; --blue:#3498db; --dark:#1a1a2e;
-      --light:#f5f7fb; --text:#e9eef5; --muted:#b7c2d0;
-      --card:rgba(255,255,255,.08); --card-border:rgba(255,255,255,.12);
-      --shadow:0 18px 50px rgba(0,0,0,.25); --radius:22px;
-    }
-    body { background-color: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-    header { text-align: center; padding: 60px 0; background: linear-gradient(135deg, #16213e, #1a1a2e); border-radius: var(--radius); margin-bottom: 40px; }
-    
-    /* ESTILO DA SUA FOTO */
-    .profile-img {
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid var(--accent);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      margin-bottom: 20px;
+      --primary:#2c3e50;
+      --accent:#e67e22;
+      --blue:#3498db;
+      --dark:#1a1a2e;
+      --light:#f5f7fb;
+      --text:#e9eef5;
+      --muted:#b7c2d0;
+      --card:rgba(255,255,255,.08);
+      --card-border:rgba(255,255,255,.12);
+      --shadow:0 18px 50px rgba(0,0,0,.25);
+      --radius:22px;
+      --container:1180px;
     }
 
-    h1 { color: var(--accent); font-size: 2.5rem; margin: 10px 0; }
-    .card { background: var(--card); border: 1px solid var(--card-border); padding: 30px; border-radius: var(--radius); margin-bottom: 25px; backdrop-filter: blur(10px); }
-    h2 { color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px; }
-    .tag { background: var(--blue); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin: 5px; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(52,152,219,.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(230,126,34,.15), transparent 25%),
+        linear-gradient(180deg, #111222 0%, var(--dark) 55%, #0f1220 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input,textarea{font:inherit}
+    .container{width:min(100% - 32px, var(--container)); margin:0 auto}
+
+    /* NAV */
+    .nav{
+      position:fixed; inset:0 0 auto 0;
+      z-index:1000;
+      transition:.3s ease;
+      background:transparent;
+    }
+    .nav.scrolled{
+      background:rgba(17,18,34,.88);
+      backdrop-filter:blur(18px);
+      box-shadow:0 8px 30px rgba(0,0,0,.25);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:800;
+      letter-spacing:.3px;
+    }
+    .brand-mark{
+      width:42px; height:42px; border-radius:14px;
+      background:linear-gradient(135deg, var(--accent), var(--blue));
+      display:grid; place-items:center; box-shadow:var(--shadow);
+    }
+    .brand-mark span{font-weight:900}
+    .nav-links{
+      display:flex; gap:22px; align-items:center;
+    }
+    .nav-links a{
+      color:var(--muted); font-size:.95rem; transition:.2s ease;
+    }
+    .nav-links a:hover{color:#fff}
+    .nav-cta{
+      padding:10px 16px; border-radius:999px;
+      background:linear-gradient(135deg, var(--accent), #ff9b46);
+      color:#fff; font-weight:700;
+      box-shadow:0 10px 24px rgba(230,126,34,.25);
+    }
+    .menu-btn{
+      display:none;
+      background:none; border:0; color:#fff; font-size:1.3rem;
+    }
+
+    /* HERO */
+    .hero{
+      padding:130px 0 70px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .9fr;
+      gap:34px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 14px; border-radius:999px;
+      background:rgba(52,152,219,.12);
+      border:1px solid rgba(52,152,219,.25);
+      color:#d7ecfb;
+      font-weight:700; font-size:.92rem;
+    }
+    .badge-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:#2ecc71; box-shadow:0 0 0 6px rgba(46,204,113,.15);
+    }
+    h1{
+      font-size:clamp(2.3rem, 5vw, 4.6rem);
+      line-height:1.02;
+      margin:18px 0 16px;
+    }
+    .subtitle{
+      font-size:clamp(1.05rem, 2vw, 1.35rem);
+      color:#d5deea;
+      min-height:2.2em;
+      margin-bottom:22px;
+    }
+    .hero p{
+      color:var(--muted);
+      font-size:1.02rem;
+      line-height:1.75;
+      max-width:62ch;
+      margin-bottom:28px;
+    }
+    .actions{
+      display:flex; flex-wrap:wrap; gap:14px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:13px 20px; border-radius:14px;
+      border:1px solid transparent;
+      font-weight:700; transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), #ff9b46);
+      color:#fff;
+      box-shadow:0 12px 26px rgba(230,126,34,.24);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .profile-card{
+      position:relative;
+      padding:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid var(--card-border);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .profile-card::before{
+      content:"";
+      position:absolute; inset:-40% -20% auto auto;
+      width:240px; height:240px; border-radius:50%;
+      background:radial-gradient(circle, rgba(52,152,219,.35), transparent 65%);
+      filter:blur(10px);
+    }
+    .portrait{
+      position:relative;
+      aspect-ratio: 4 / 5;
+      border-radius:24px;
+      overflow:hidden;
+      background:#101523;
+      border:1px solid rgba(255,255,255,.08);
+      display:grid; place-items:center;
+    }
+    .portrait img{
+      width:100%; height:100%; object-fit:cover;
+    }
+    .portrait-caption{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:.95rem;
+      text-align:center;
+    }
+
+    /* SECTIONS */
+    section{
+      padding:78px 0;
+    }
+    .section-head{
+      margin-bottom:28px;
+    }
+    .section-head h2{
+      margin:0 0 10px;
+      font-size:clamp(1.7rem, 3vw, 2.5rem);
+    }
+    .section-head p{
+      margin:0; color:var(--muted); max-width:70ch; line-height:1.7;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:28px;
+      align-items:start;
+    }
+    .about-box, .card, .timeline-item, .form-box{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .about-box{padding:24px}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:20px;
+    }
+    .stat{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+    .stat strong{
+      display:block;
+      font-size:1.4rem;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .stat span{color:var(--muted); font-size:.92rem}
+
+    .photo-note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.6;
+    }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .card{padding:24px}
+    .card h3{margin:0 0 10px}
+    .card ul{
+      margin:0; padding-left:18px; color:var(--muted); line-height:1.8;
+    }
+    .card .icon{
+      width:52px;height:52px;border-radius:16px;
+      display:grid;place-items:center;
+      margin-bottom:14px;
+      background:linear-gradient(135deg, rgba(52,152,219,.18), rgba(230,126,34,.16));
+      border:1px solid rgba(255,255,255,.08);
+      font-size:1.4rem;
+    }
+
+    .timeline{
+      position:relative;
+      margin-top:22px;
+      padding-left:22px;
+      border-left:2px solid rgba(52,152,219,.4);
+      display:grid;
+      gap:18px;
+    }
+    .timeline-item{
+      padding:22px;
+      position:relative;
+    }
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      left:-33px; top:28px;
+      width:14px;height:14px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(230,126,34,.15);
+    }
+    .timeline-item .meta{
+      color:#d7e7f7;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+    .timeline-item .sub{color:var(--muted); margin:0; line-height:1.7}
+
+    .platforms{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .platform{
+      padding:22px;
+      text-align:center;
+    }
+    .social-icon{
+      width:58px;height:58px;margin:0 auto 12px;
+      display:grid;place-items:center;
+    }
+
+    .education-list{
+      display:grid;
+      gap:14px;
+    }
+    .edu{
+      padding:20px 22px;
+      display:flex; gap:16px;
+      align-items:flex-start;
+    }
+    .edu-bullet{
+      width:14px;height:14px;border-radius:50%;
+      background:var(--blue);
+      margin-top:7px;
+      box-shadow:0 0 0 6px rgba(52,152,219,.14);
+      flex:0 0 auto;
+    }
+    .edu h4{margin:0 0 6px}
+    .edu p{margin:0;color:var(--muted);line-height:1.65}
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:18px;
+    }
+    .whatsapp-box{
+      padding:24px;
+    }
+    .whatsapp-link{
+      display:inline-flex;
+      margin-top:14px;
+      gap:10px;
+      align-items:center;
+      padding:12px 18px;
+      border-radius:14px;
+      background:#25d366;
+      color:#fff;
+      font-weight:800;
+    }
+
+    .form-box{padding:24px}
+    form{display:grid; gap:14px}
+    .field{
+      display:grid; gap:8px;
+    }
+    label{font-weight:700; color:#eef4fb}
+    input, textarea{
+      width:100%;
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      outline:none;
+      transition:.2s ease;
+    }
+    input:focus, textarea:focus{
+      border-color:rgba(52,152,219,.55);
+      box-shadow:0 0 0 4px rgba(52,152,219,.12);
+    }
+    textarea{min-height:140px; resize:vertical}
+    .submit{
+      cursor:pointer;
+      border:0;
+      justify-self:start;
+    }
+
+    footer{
+      padding:30px 0 42px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+    }
+    .footer-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:18px; flex-wrap:wrap;
+    }
+    .footer-icons{
+      display:flex; gap:12px; flex-wrap:wrap;
+    }
+    .icon-link{
+      width:44px;height:44px;border-radius:14px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      transition:.2s ease;
+    }
+    .icon-link:hover{transform:translateY(-2px); background:rgba(255,255,255,.1)}
+    .icon-link svg{width:22px;height:22px}
+
+    /* MODAL */
+    .modal{
+      position:fixed; inset:0; z-index:2000;
+      display:none; place-items:center;
+      background:rgba(0,0,0,.55);
+      padding:20px;
+    }
+    .modal.show{display:grid}
+    .modal-card{
+      width:min(100%, 460px);
+      background:linear-gradient(180deg, #20253b, #151a2a);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+    .modal-card h3{margin:8px 0 10px}
+    .modal-card p{margin:0 0 18px; color:var(--muted); line-height:1.7}
+    .modal-close{
+      border:0; cursor:pointer;
+      padding:11px 16px;
+      border-radius:12px;
+      background:var(--accent);
+      color:#fff; font-weight:700;
+    }
+
+    /* REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition: .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px){
+      .hero-grid,.about-grid,.skills-grid,.platforms,.contact-grid{
+        grid-template-columns:1fr;
+      }
+      .nav-links{display:none}
+      .menu-btn{display:block}
+      .nav.open .nav-links{
+        display:flex;
+        position:absolute;
+        top:70px; left:16px; right:16px;
+        flex-direction:column;
+        padding:16px;
+        background:rgba(17,18,34,.96);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:18px;
+      }
+      .stats{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <img src="sua-foto.jpg" alt="Ana Paula Santana Leite" class="profile-img">
-    <h1>Ana Paula Santana Leite</h1>
-    <p style="font-size: 1.2rem; color: var(--muted);">Tecnologia | Gestão Cultural | Criadora de Conteúdo</p>
+  <header class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand">
+        <div class="brand-mark"><span>AP</span></div>
+        <div>
+          <div>Ana Paula Santana Leite</div>
+          <small style="color:var(--muted)">Portfólio Profissional</small>
+        </div>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#sobre">Sobre</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#plataformas">Plataformas</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato" class="nav-cta">Contato</a>
+      </nav>
+    </div>
   </header>
 
-  <div class="card">
-    <h2>🔧 Especialista em Hardware (TI)</h2>
-    <p>Manutenção técnica de notebooks (Lenovo, Sony, Positivo). Upgrade de SSD e RAM, limpeza interna e otimização de sistemas.</p>
-    <div class="tag">Hardware</div> <div class="tag">Suporte Técnico</div> <div class="tag">TI</div>
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="badge"><span class="badge-dot"></span> Disponível para oportunidades</span>
+          <h1>Ana Paula Santana Leite</h1>
+          <div class="subtitle" id="typing"></div>
+          <p>
+            Profissional multidisciplinar do Rio de Janeiro - RJ, com experiência em atividades administrativas,
+            suporte em informática, produção de conteúdo digital e assistência virtual.
+            Foco em soluções práticas, organização, comunicação e comprometimento com resultados.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contato">Fale comigo</a>
+            <a class="btn btn-secondary" href="https://wa.me/5522997490988" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="profile-card reveal">
+          <div class="portrait" aria-label="Foto profissional de Ana Paula Santana Leite">
+            <img
+              alt="Foto profissional em home office"
+              src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'>
+                <defs>
+                  <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+                    <stop offset='0%' stop-color='%232c3e50'/>
+                    <stop offset='100%' stop-color='%231a1a2e'/>
+                  </linearGradient>
+                  <linearGradient id='shirt' x1='0' y1='0' x2='1' y2='1'>
+                    <stop offset='0%' stop-color='%233498db'/>
+                    <stop offset='100%' stop-color='%232b6cb0'/>
+                  </linearGradient>
+                </defs>
+                <rect width='800' height='1000' fill='url(%23bg)'/>
+                <circle cx='620' cy='160' r='180' fill='%23e67e22' opacity='.18'/>
+                <circle cx='180' cy='200' r='140' fill='%233498db' opacity='.16'/>
+                <rect x='110' y='110' width='580' height='780' rx='44' fill='rgba(255,255,255,0.04)' stroke='rgba(255,255,255,0.14)'/>
+                <rect x='150' y='280' width='500' height='520' rx='34' fill='rgba(255,255,255,0.05)'/>
+                <ellipse cx='400' cy='310' rx='95' ry='105' fill='%23f1c7a8'/>
+                <path d='M300 500c25-85 82-122 100-122s75 37 100 122v175H300z' fill='url(%23shirt)'/>
+                <path d='M335 477l65 55 65-55' stroke='rgba(255,255,255,0.55)' stroke-width='10' fill='none' stroke-linecap='round'/>
+                <rect x='120' y='780' width='560' height='18' rx='9' fill='rgba(255,255,255,0.16)'/>
+                <rect x='500' y='560' width='126' height='120' rx='14' fill='rgba(255,255,255,0.08)' stroke='rgba(255,255,255,0.18)'/>
+                <rect x='520' y='580' width='86' height='12' rx='6' fill='%233498db'/>
+                <rect x='520' y='606' width='72' height='12' rx='6' fill='%23e67e22'/>
+                <rect x='520' y='632' width='94' height='12' rx='6' fill='rgba(255,255,255,0.4)'/>
+                <text x='50%' y='910' text-anchor='middle' fill='rgba(255,255,255,0.7)' font-family='Arial, sans-serif' font-size='28'>Foto Profissional - Home Office</text>
+              </svg>" />
+          </div>
+          <div class="portrait-caption">Home office • camisa azul • jeans</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container about-grid">
+        <div class="about-box reveal">
+          <div class="section-head">
+            <h2>Sobre mim</h2>
+            <p>
+              Sou uma profissional organizada, versátil e comprometida, com atuação em gestão cultural,
+              produção de conteúdo digital e suporte em informática. Tenho facilidade para aprender,
+              resolver problemas e colaborar com equipes remotas ou presenciais.
+            </p>
+          </div>
+          <p style="color:var(--muted); line-height:1.8; margin:0;">
+            Busco oportunidades em atividades administrativas, suporte em informática, produção de conteúdo digital
+            ou assistência virtual, com preferência por trabalho remoto ou meio período. Minha rotina é orientada por
+            responsabilidade, comunicação clara, atenção aos detalhes e foco em entregas consistentes.
+          </p>
+          <div class="stats">
+            <div class="stat"><strong>3+</strong><span>áreas de atuação</span></div>
+            <div class="stat"><strong>10+</strong><span>habilidades aplicáveis</span></div>
+            <div class="stat"><strong>100%</strong><span>comprometimento</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Habilidades</h2>
+          <p>Competências práticas para ambientes administrativos, digitais e de suporte técnico.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card reveal">
+            <div class="icon">🖥️</div>
+            <h3>Informática</h3>
+            <ul>
+              <li>Montagem e manutenção de PC</li>
+              <li>Instalação de sistemas operacionais</li>
+              <li>Drivers, periféricos e atualizações</li>
+              <li>Diagnóstico e resolução de falhas</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">🎬</div>
+            <h3>Conteúdo Digital</h3>
+            <ul>
+              <li>Edição e produção de vídeo</li>
+              <li>Criação de conteúdo para canais digitais</li>
+              <li>Gestão de redes sociais</li>
+              <li>Organização de calendário editorial</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">📊</div>
+            <h3>Ferramentas Digitais</h3>
+            <ul>
+              <li>Excel avançado</li>
+              <li>Pacote de escritório</li>
+              <li>Documentos digitais e organização</li>
+              <li>Apoio administrativo e virtual</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Experiência</h2>
+          <p>Vivência em produção cultural e gestão de conteúdo digital, com abordagem prática e criativa.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="meta">Coordenadora / Produtora Cultural — Projeto Clubinho do Guaraná</div>
+            <p class="sub">
+              Atuação em organização de atividades, apoio à produção, comunicação com equipe e acompanhamento
+              de demandas operacionais em projeto cultural.
+            </p>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="meta">Gestão de Conteúdo Digital — Projetos Independentes</div>
+            <p class="sub">
+              Planejamento e criação de conteúdo, apoio à presença online, organização de publicações e
+              suporte em tarefas de comunicação digital.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="plataformas">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Plataformas</h2>
+          <p>Presença em canais digitais com foco em alcance, comunicação e conteúdo.</p>
+        </div>
+
+        <div class="platforms">
+          <article class="card platform reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="#FF0000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M21.6 7.2a2.52 2.52 0 0 0-1.77-1.78C18.3 5 12 5 12 5s-6.3 0-7.83.42A2.52 2.52 0 0 0 2.4 7.2 26.5 26.5 0 0 0 2 12a26.5 26.5 0 0 0 .4 4.8 2.52 2.52 0 0 0 1.77 1.78C5.7 19 12 19 12 19s6.3 0 7.83-.42a2.52 2.52 0 0 0 1.77-1.78A26.5 26.5 0 0 0 22 12a26.5 26.5 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/>
+              </svg>
+            </div>
+            <h3>YouTube</h3>
+            <p style="color:var(--muted); line-height:1.7; margin:0;">Produção e organização de vídeos e conteúdos audiovisuais.</p>
+          </article>
+
+          <article class="card platform reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <radialGradient id="igg" cx="30%" cy="110%" r="130%">
+                    <stop offset="0%" stop-color="#feda75"/>
+                    <stop offset="25%" stop-color="#fa7e1e"/>
+                    <stop offset="50%" stop-color="#d62976"/>
+                    <stop offset="75%" stop-color="#962fbf"/>
+                    <stop offset="100%" stop-color="#4f5bd5"/>
+                  </radialGradient>
+                </defs>
+                <path fill="url(#igg)" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 2.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 6.5zm0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5zM18 5.2a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 5.2z"/>
+              </svg>
+            </div>
+            <h3>Instagram</h3>
+            <p style="color:var(--muted); line-height:1.7; margin:0;">Conteúdo visual, presença de marca e engajamento com público.</p>
+          </article>
+
+          <article class="card platform reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="#010101" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M16.7 2c.5 2.7 2.1 4.4 4.8 4.8v3.1c-1.8.1-3.5-.4-4.9-1.4v6.4a6.1 6.1 0 1 1-6.1-6.1c.2 0 .5 0 .7.1v3.4a2.8 2.8 0 1 0 2 2.7V2h3.5Z"/>
+                <path d="M13.2 2c.5 2.3 1.7 4 3.5 5V9.7c-1.8-1.2-3.2-3-3.5-4.9V2Z" fill="#25F4EE"/>
+              </svg>
+            </div>
+            <h3>TikTok</h3>
+            <p style="color:var(--muted); line-height:1.7; margin:0;">Formatos curtos, dinâmicos e estratégicos para redes sociais.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacao">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Formação</h2>
+          <p>Base acadêmica e capacitações complementares para atuação técnica e digital.</p>
+        </div>
+
+        <div class="education-list">
+          <div class="edu card reveal">
+            <div class="edu-bullet"></div>
+            <div>
+              <h4>Ensino Superior em Turismo — Estácio</h4>
+              <p>Incompleto</p>
+            </div>
+          </div>
+
+          <div class="edu card reveal">
+            <div class="edu-bullet"></div>
+            <div>
+              <h4>Excel Avançado — ENAP</h4>
+              <p>Concluído</p>
+            </div>
+          </div>
+
+          <div class="edu card reveal">
+            <div class="edu-bullet"></div>
+            <div>
+              <h4>Produção de Cursos EAD com IA Generativa — ENAP</h4>
+              <p>Concluído</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Contato</h2>
+          <p>Entre em contato para oportunidades remotas, meio período ou projetos pontuais.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="whatsapp-box card reveal">
+            <h3>WhatsApp</h3>
+            <p style="color:var(--muted); line-height:1.75; margin:0;">
+              Clique abaixo para iniciar uma conversa direta:
+            </p>
+            <a class="whatsapp-link" href="https://wa.me/5522997490988" target="_blank" rel="noopener noreferrer">
+              <!-- WhatsApp SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L0 24l6.5-1.8a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.3Zm-8.4 18.1h-.1a9.8 9.8 0 0 1-5.0-1.4l-.4-.2-3.8 1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.6 4.7Zm5.7-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.8-1.5-2.1-.1-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.7 1.1 2.9c.1.2 2 3.1 4.8 4.4.7.3 1.2.5 1.6.6.7.2 1.4.1 1.9.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/>
+              </svg>
+              Abrir WhatsApp
+            </a>
+          </div>
+
+          <div class="form-box reveal">
+            <h3>Formulário de contato</h3>
+            <form id="contactForm">
+              <div class="field">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome" required />
+              </div>
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+              </div>
+              <div class="field">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" placeholder="Escreva sua mensagem..." required></textarea>
+              </div>
+              <button class="btn btn-primary submit" type="submit">Enviar mensagem</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong style="color:#fff">Ana Paula Santana Leite</strong><br />
+        Rio de Janeiro - RJ • WhatsApp: (22) 99749-0988
+      </div>
+
+      <div class="footer-icons" aria-label="Redes sociais">
+        <a class="icon-link" href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="#FF0000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8A26.5 26.5 0 0 0 2 12a26.5 26.5 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26.5 26.5 0 0 0 22 12a26.5 26.5 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/>
+          </svg>
+        </a>
+        <a class="icon-link" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="igFooter" cx="30%" cy="110%" r="130%">
+                <stop offset="0%" stop-color="#feda75"/>
+                <stop offset="25%" stop-color="#fa7e1e"/>
+                <stop offset="50%" stop-color="#d62976"/>
+                <stop offset="75%" stop-color="#962fbf"/>
+                <stop offset="100%" stop-color="#4f5bd5"/>
+              </radialGradient>
+            </defs>
+            <path fill="url(#igFooter)" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 2.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 6.5zm0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5zM18 5.2a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 5.2z"/>
+          </svg>
+        </a>
+        <a class="icon-link" href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.7 2c.5 2.7 2.1 4.4 4.8 4.8v3.1c-1.8.1-3.5-.4-4.9-1.4v6.4a6.1 6.1 0 1 1-6.1-6.1c.2 0 .5 0 .7.1v3.4a2.8 2.8 0 1 0 2 2.7V2h3.5Z" fill="#000"/>
+            <path d="M13.2 2c.5 2.3 1.7 4 3.5 5V9.7c-1.8-1.2-3.2-3-3.5-4.9V2Z" fill="#25F4EE"/>
+          </svg>
+        </a>
+        <a class="icon-link" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.98 3.5A2.48 2.48 0 1 1 2.5 5.98 2.48 2.48 0 0 1 4.98 3.5ZM3 8.5h4v12H3v-12Zm7 0h3.8v1.64h.05c.53-.95 1.84-1.95 3.79-1.95 4.05 0 4.79 2.67 4.79 6.15V20.5h-4v-5.37c0-1.28-.03-2.92-1.78-2.92-1.79 0-2.07 1.4-2.07 2.83v5.46h-4v-12Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div style="font-size:2rem">✅</div>
+      <h3>Mensagem enviada com sucesso</h3>
+      <p>Obrigado pelo contato! Sua mensagem foi recebida com sucesso. Em breve retornarei.</p>
+      <button class="modal-close" id="closeModal">Fechar</button>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>📊 Gestão e Liderança</h2>
-    <p>Coordenadora e Produtora Cultural no <strong>Projeto Clubinho do Guaraná</strong>. Experiência em liderança social e gestão de projetos.</p>
-  </div>
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    };
+    window.addEventListener('scroll', onScroll);
+    onScroll();
 
-  <div class="card">
-    <h2>🎓 Qualificações (ENAP)</h2>
-    <p>• Excel Avançado <br> • Inteligência Artificial Generativa</p>
-  </div>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.querySelector('.nav');
+    menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('open'));
+    });
 
-  <div class="card">
-    <h2>🎥 Produção Digital</h2>
-    <p>Gestão de canais no YouTube (Urubu Fêmea, Pets, Receitas). Edição profissional em CapCut e Movavi.</p>
-  </div>
-</div>
+    // Typing effect
+    const typingEl = document.getElementById('typing');
+    const text = "Coordenadora Cultural, Gestora de Conteúdo Digital & Especialista em Informática";
+    let i = 0;
+    function type() {
+      typingEl.textContent = text.slice(0, i);
+      i++;
+      if (i <= text.length) {
+        setTimeout(type, 28);
+      } else {
+        typingEl.innerHTML = text;
+      }
+    }
+    type();
 
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Form modal confirmation
+    const form = document.getElementById('contactForm');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      modal.classList.add('show');
+      form.reset();
+    });
+
+    closeModal.addEventListener('click', () => modal.classList.remove('show'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('show');
+    });
+  </script>
 </body>
 </html>
-  
-  
